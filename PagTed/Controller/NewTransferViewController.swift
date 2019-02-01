@@ -64,21 +64,7 @@ class NewTransferViewController: UIViewController {
 			_ = AlertUtils.showAlert(self, title: "Temos um problema!",message: "Ops, ocorreu um erro na realização da sua Transferência")
 		}
 	}
-	
-//	func showAlertInScreen(_ value: Bool) {
-//
-//		var message: String = ""
-//		message =  value ? "Transferência realizada com Sucesso" : "Ops, ocorreu um erro na realização da sua Transferência"
-//
-//		let alert = UIAlertController(title: "Status da Transferência", message: message, preferredStyle: .alert)
-//
-//		let confirm = UIAlertAction(title: "OK", style: .default, handler: nil)
-//
-//		alert.addAction(confirm)
-//
-//		self.present(alert, animated: true, completion: nil)
-//	}
-	
+
 	@objc func myTextFieldDidChange(_ textField: UITextField) {
 		if let amountString = textField.text?.currencyInputFormatting() {
 			textField.text = amountString
