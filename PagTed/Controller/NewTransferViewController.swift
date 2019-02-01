@@ -38,7 +38,7 @@ class NewTransferViewController: UIViewController {
 	
 	func saveTed(_ value: TedModel) {
 		REST.saveTed(ted: value) { (success) in
-			self.showAlertInScreen(true)
+			print("TED salvo")
 		}
 	}
 
@@ -55,30 +55,29 @@ class NewTransferViewController: UIViewController {
 		
 		guard let valueInput = valueByTed.text?.currencyInputFormatting() else { return }
 		guard let balanceUser = accountModel?.correntista.saldo else { return }
-		//guard let ted = ted else { return }
 		
 		if Int(valueInput) ?? 0 < balanceUser {
 			
 			saveTed(ted)
-			
+			_ = AlertUtils.showAlert(self, title: "Tudo certo!",message: "Transferência realizada com Sucesso")
 		} else {
-			showAlertInScreen(false)
+			_ = AlertUtils.showAlert(self, title: "Temos um problema!",message: "Ops, ocorreu um erro na realização da sua Transferência")
 		}
 	}
 	
-	func showAlertInScreen(_ value: Bool) {
-	
-		var message: String = ""
-		message =  value ? "Transferência realizada com Sucesso" : "Ops, ocorreu um erro na realização da sua Transferência"
-		
-		let alert = UIAlertController(title: "Status da Transferência", message: message, preferredStyle: .alert)
-		
-		let confirm = UIAlertAction(title: "OK", style: .default, handler: nil)
-		
-		alert.addAction(confirm)
-		
-		self.present(alert, animated: true, completion: nil)
-	}
+//	func showAlertInScreen(_ value: Bool) {
+//
+//		var message: String = ""
+//		message =  value ? "Transferência realizada com Sucesso" : "Ops, ocorreu um erro na realização da sua Transferência"
+//
+//		let alert = UIAlertController(title: "Status da Transferência", message: message, preferredStyle: .alert)
+//
+//		let confirm = UIAlertAction(title: "OK", style: .default, handler: nil)
+//
+//		alert.addAction(confirm)
+//
+//		self.present(alert, animated: true, completion: nil)
+//	}
 	
 	@objc func myTextFieldDidChange(_ textField: UITextField) {
 		if let amountString = textField.text?.currencyInputFormatting() {
